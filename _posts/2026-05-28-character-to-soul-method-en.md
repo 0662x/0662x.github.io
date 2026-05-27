@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Character-to-SOUL Method: A General Methodology for Character Feature Abstraction and SOUL.md Construction v2.0"
-date: 2026-05-28 19:00:00 +1000
+date: 2026-05-28 00:20:00 +1000
 categories: ai-agent roleplay methodology
 lang: en
+description: "A practical workflow for turning character materials, event memories, and behavior rules into an executable SOUL.md."
 permalink: /posts/character-to-soul-method-en/
 ---
 

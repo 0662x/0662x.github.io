@@ -15,14 +15,11 @@ title: Home
     --gold: #d8b56d;
     --blue: #8fb7ff;
     --green: #9ad7c2;
-    --radius: 24px;
+    --radius: 8px;
   }
 
   body {
-    background:
-      radial-gradient(circle at 15% 5%, rgba(143, 183, 255, 0.18), transparent 32%),
-      radial-gradient(circle at 85% 10%, rgba(216, 181, 109, 0.13), transparent 28%),
-      var(--bg);
+    background: linear-gradient(180deg, #0d1117 0%, var(--bg) 42%, #080b0f 100%);
     color: var(--text);
   }
 
@@ -63,7 +60,7 @@ title: Home
     align-items: center;
     gap: 12px;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
   }
 
   .brand-mark {
@@ -103,9 +100,9 @@ title: Home
   }
 
   .hero h1 {
-    font-size: clamp(44px, 7vw, 88px);
+    font-size: 78px;
     line-height: 0.98;
-    letter-spacing: -0.075em;
+    letter-spacing: 0;
     margin: 0 0 28px;
     max-width: 850px;
   }
@@ -175,7 +172,7 @@ title: Home
 
   .section h2 {
     font-size: 28px;
-    letter-spacing: -0.04em;
+    letter-spacing: 0;
     margin: 0;
   }
 
@@ -215,7 +212,7 @@ title: Home
 
   .card h3 {
     font-size: 20px;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     margin: 0 0 12px;
   }
 
@@ -228,7 +225,7 @@ title: Home
 
   .featured {
     border: 1px solid var(--line);
-    border-radius: 32px;
+    border-radius: var(--radius);
     overflow: hidden;
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.035));
@@ -244,8 +241,8 @@ title: Home
     min-height: 360px;
     padding: 34px;
     background:
-      radial-gradient(circle at 20% 20%, rgba(216, 181, 109, 0.42), transparent 24%),
-      radial-gradient(circle at 70% 65%, rgba(143, 183, 255, 0.32), transparent 28%),
+      linear-gradient(135deg, rgba(216, 181, 109, 0.22), transparent 38%),
+      linear-gradient(160deg, rgba(143, 183, 255, 0.18), transparent 52%),
       linear-gradient(135deg, #101720, #0c0f15);
     position: relative;
   }
@@ -255,7 +252,7 @@ title: Home
     position: absolute;
     inset: 34px;
     border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 24px;
+    border-radius: var(--radius);
   }
 
   .featured-label {
@@ -278,9 +275,9 @@ title: Home
   }
 
   .featured-content h3 {
-    font-size: clamp(30px, 4vw, 52px);
+    font-size: 42px;
     line-height: 1.02;
-    letter-spacing: -0.06em;
+    letter-spacing: 0;
     margin: 0 0 20px;
   }
 
@@ -331,7 +328,7 @@ title: Home
 
   .post-title {
     font-size: 20px;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
     transition: color 0.2s ease;
   }
 
@@ -352,7 +349,7 @@ title: Home
   .about h2 {
     font-size: 34px;
     line-height: 1.1;
-    letter-spacing: -0.05em;
+    letter-spacing: 0;
     margin: 0;
   }
 
@@ -375,11 +372,15 @@ title: Home
 
   @media (max-width: 860px) {
     .nav {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 18px;
       margin-bottom: 56px;
     }
 
     .nav-links {
-      display: none;
+      flex-wrap: wrap;
+      gap: 10px 16px;
     }
 
     .hero,
@@ -403,6 +404,44 @@ title: Home
 
     .footer {
       flex-direction: column;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .wrapper {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+
+    .home {
+      padding-top: 22px;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+    }
+
+    .hero p {
+      font-size: 16px;
+    }
+
+    .section-head {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .featured-art {
+      min-height: 220px;
+    }
+
+    .featured-content {
+      padding: 26px;
+    }
+
+    .featured-content h3 {
+      font-size: 30px;
+      line-height: 1.08;
     }
   }
 </style>
@@ -526,7 +565,7 @@ title: Home
           </h3>
 
           <p>
-            {{ featured.excerpt | strip_html | truncate: 180 }}
+            {{ featured.description | default: featured.excerpt | strip_html | truncate: 180 }}
           </p>
 
           <a class="button" href="{{ featured.url | relative_url }}">
@@ -547,7 +586,7 @@ title: Home
     </div>
 
     <div class="posts">
-      {% for post in site.posts limit: 8 %}
+      {% for post in site.posts offset: 1 limit: 8 %}
         <a class="post-row" href="{{ post.url | relative_url }}">
           <div class="post-date">{{ post.date | date: "%b %d, %Y" }}</div>
           <div class="post-title">{{ post.title }}</div>

@@ -1,9 +1,10 @@
 ---
 layout: post
 title: "Character-to-SOUL Method：通用角色特征抽象与 SOUL.md 构建方法论 v2.0"
-date: 2026-05-28 18:00:00 +1000
+date: 2026-05-28 00:10:00 +1000
 categories: ai-agent roleplay methodology
 lang: zh
+description: "一套从角色资料、事件记忆、行为规则到 SOUL.md 构建与评估的角色工程方法论。"
 permalink: /posts/character-to-soul-method-zh/
 ---
 

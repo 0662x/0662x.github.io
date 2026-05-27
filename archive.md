@@ -6,13 +6,23 @@ permalink: /archive/
 
 <style>
   body {
-    background: #0b0f14;
+    background: linear-gradient(180deg, #0d1117 0%, #0b0f14 42%, #080b0f 100%);
     color: #f3efe7;
   }
 
   .site-header,
   .site-footer {
     display: none;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .wrapper {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .archive-page {
@@ -39,9 +49,9 @@ permalink: /archive/
   }
 
   h1 {
-    font-size: clamp(42px, 7vw, 78px);
+    font-size: 72px;
     line-height: 1;
-    letter-spacing: -0.06em;
+    letter-spacing: 0;
     margin-bottom: 18px;
   }
 
@@ -69,7 +79,7 @@ permalink: /archive/
     color: #f3efe7;
     text-decoration: none;
     font-size: 22px;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
   }
 
   .title a:hover {
@@ -83,6 +93,14 @@ permalink: /archive/
   }
 
   @media (max-width: 680px) {
+    .archive-page {
+      padding: 36px 18px 72px;
+    }
+
+    h1 {
+      font-size: 44px;
+    }
+
     .post-row {
       grid-template-columns: 1fr;
       gap: 8px;

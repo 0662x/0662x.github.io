@@ -3,6 +3,8 @@ layout: post
 title: "让 Agent 更像人：一种分代长期记忆设计思路"
 date: 2026-05-27 18:00:00 +1000
 categories: ai-agent memory architecture
+lang: zh
+description: "从 JVM 分代回收出发，讨论 AI Agent 长期记忆中的短期、每日、项目与长期记忆分层。"
 ---
 
 # **从 JVM 分代回收到 Agent 长期记忆：一种更接近人类记忆的设计思路**

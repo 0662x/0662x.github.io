@@ -6,13 +6,23 @@ permalink: /about/
 
 <style>
   body {
-    background: #0b0f14;
+    background: linear-gradient(180deg, #0d1117 0%, #0b0f14 42%, #080b0f 100%);
     color: #f3efe7;
   }
 
   .site-header,
   .site-footer {
     display: none;
+  }
+
+  .page-content {
+    padding: 0;
+  }
+
+  .wrapper {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .about-page {
@@ -39,9 +49,9 @@ permalink: /about/
   }
 
   h1 {
-    font-size: clamp(42px, 7vw, 78px);
+    font-size: 72px;
     line-height: 1;
-    letter-spacing: -0.06em;
+    letter-spacing: 0;
     margin-bottom: 24px;
   }
 
@@ -55,14 +65,28 @@ permalink: /about/
     margin-top: 42px;
     padding: 28px;
     border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 24px;
+    border-radius: 8px;
     background: rgba(255,255,255,0.055);
   }
 
   .card h2 {
     margin-top: 0;
     color: #f3efe7;
-    letter-spacing: -0.03em;
+    letter-spacing: 0;
+  }
+
+  @media (max-width: 680px) {
+    .about-page {
+      padding: 36px 18px 72px;
+    }
+
+    h1 {
+      font-size: 44px;
+    }
+
+    p {
+      font-size: 16px;
+    }
   }
 </style>
 
