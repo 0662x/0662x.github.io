@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "让 Agent 记得像人，而不是像硬盘：一种分代长期记忆设计思路"
+title: "让 Agent 更像人：一种分代长期记忆设计思路"
 date: 2026-05-27 18:00:00 +1000
 categories: ai-agent memory architecture
 ---
