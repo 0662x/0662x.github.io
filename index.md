@@ -415,9 +415,9 @@ title: Home
     </a>
 
     <div class="nav-links">
-      <a href="#writing">Writing</a>
+      <a href="{{ '/archive/' | relative_url }}">Archive</a>
       <a href="#topics">Topics</a>
-      <a href="#about">About</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
       <a href="https://github.com/0662x">GitHub</a>
     </div>
   </nav>
