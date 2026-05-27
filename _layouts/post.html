@@ -87,6 +87,34 @@ layout: default
     max-width: 780px;
   }
 
+  .language-switch {
+    display: inline-flex;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.045);
+  }
+
+  .language-switch a {
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1;
+    padding: 8px 12px;
+    text-decoration: none;
+  }
+
+  .language-switch a:hover {
+    color: var(--text);
+  }
+
+  .language-switch .is-active {
+    background: rgba(216, 181, 109, 0.16);
+    color: var(--text);
+  }
+
   .post-body {
     color: #d9dee7;
     font-size: 17px;
@@ -142,39 +170,106 @@ layout: default
     padding: 0.1em 0.35em;
   }
 
+  .post-body .highlighter-rouge,
+  .post-body .highlight,
   .post-body pre {
-    background: rgba(255, 255, 255, 0.07);
+    background: #111821 !important;
     border: 1px solid var(--line);
     border-radius: 8px;
+    color: #e9edf5 !important;
+  }
+
+  .post-body .highlight {
+    margin: 1.4em 0;
+  }
+
+  .post-body .highlighter-rouge .highlight {
+    background: transparent !important;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .post-body .highlight pre,
+  .post-body pre {
+    font-size: 15px;
+    line-height: 1.7;
     overflow-x: auto;
     padding: 18px;
   }
 
+  .post-body .highlight pre,
+  .post-body pre.highlight {
+    background: transparent !important;
+    border: 0;
+    margin: 0;
+  }
+
+  .post-body .highlight code,
   .post-body pre code {
     background: transparent;
     border: 0;
-    color: #edf2f7;
+    color: #e9edf5 !important;
     padding: 0;
   }
 
+  .post-body .highlight span {
+    color: inherit !important;
+  }
+
   .post-body table {
+    background: rgba(255, 255, 255, 0.025) !important;
     border-collapse: collapse;
+    border: 1px solid var(--line) !important;
+    color: #e3e8f1 !important;
     display: block;
+    font-size: 15px;
+    line-height: 1.65;
     margin: 1.6em 0;
     overflow-x: auto;
     width: 100%;
   }
 
+  .post-body thead,
+  .post-body tbody,
+  .post-body tr {
+    background: transparent !important;
+    color: inherit !important;
+  }
+
+  .post-body thead tr {
+    background: rgba(255, 255, 255, 0.09) !important;
+  }
+
+  .post-body tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.025) !important;
+  }
+
+  .post-body tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.055) !important;
+  }
+
   .post-body th,
   .post-body td {
-    border: 1px solid var(--line);
+    background: transparent !important;
+    border: 1px solid var(--line) !important;
+    color: inherit !important;
+    min-width: 130px;
     padding: 10px 12px;
     vertical-align: top;
   }
 
+  .post-body th:nth-child(3),
+  .post-body td:nth-child(3),
+  .post-body th:nth-child(4),
+  .post-body td:nth-child(4) {
+    min-width: 260px;
+  }
+
   .post-body th {
-    background: rgba(255, 255, 255, 0.075);
+    background: transparent !important;
     color: var(--text);
+    font-weight: 700;
   }
 
   .post-body hr {
@@ -230,6 +325,22 @@ layout: default
 
     {% if page.description %}
       <p class="post-description">{{ page.description }}</p>
+    {% endif %}
+
+    {% if page.translation_key %}
+      {% assign translations = site.posts | where: "translation_key", page.translation_key %}
+      {% assign zh_translation = translations | where: "lang", "zh" | first %}
+      {% assign en_translation = translations | where: "lang", "en" | first %}
+      {% if translations.size > 1 %}
+        <div class="language-switch" aria-label="Language versions">
+          {% if zh_translation %}
+            <a {% if page.lang == "zh" %}class="is-active"{% endif %} href="{{ zh_translation.url | relative_url }}">中文</a>
+          {% endif %}
+          {% if en_translation %}
+            <a {% if page.lang == "en" %}class="is-active"{% endif %} href="{{ en_translation.url | relative_url }}">English</a>
+          {% endif %}
+        </div>
+      {% endif %}
     {% endif %}
   </header>
 

@@ -5,10 +5,9 @@ date: 2026-05-28 00:20:00 +1000
 categories: ai-agent roleplay methodology
 lang: en
 description: "A practical workflow for turning character materials, event memories, and behavior rules into an executable SOUL.md."
+translation_key: character-to-soul-method
 permalink: /posts/character-to-soul-method-en/
 ---
-
-[中文版]({{ '/posts/character-to-soul-method-zh/' | relative_url }})
 
 # Character-to-SOUL Method
 ## A General Methodology for Character Feature Abstraction and SOUL.md Construction v2.0

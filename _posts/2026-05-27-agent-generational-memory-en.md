@@ -5,6 +5,8 @@ date: 2026-05-27 19:00:00 +1000
 categories: ai-agent memory architecture
 lang: en
 description: "A generational long-term memory model for AI agents, inspired by JVM memory management and human recall."
+translation_key: agent-generational-memory
+permalink: /posts/agent-generational-memory-en/
 ---
 
 # **From JVM Generational Garbage Collection to Long-Term Memory in Agents: A More Human-Like Design Approach**

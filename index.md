@@ -321,6 +321,10 @@ title: Home
     color: var(--gold);
   }
 
+  .post-row:hover .post-title a {
+    color: var(--gold);
+  }
+
   .post-date {
     color: var(--soft);
     font-size: 13px;
@@ -332,10 +336,40 @@ title: Home
     transition: color 0.2s ease;
   }
 
+  .post-title a {
+    color: inherit;
+  }
+
   .post-category {
     color: var(--soft);
     font-size: 13px;
     text-align: right;
+  }
+
+  .language-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .featured-content .language-links {
+    margin-bottom: 18px;
+  }
+
+  .language-pill {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1;
+    padding: 7px 10px;
+  }
+
+  .language-pill:hover,
+  .language-pill.is-primary {
+    border-color: rgba(216, 181, 109, 0.45);
+    background: rgba(216, 181, 109, 0.12);
+    color: var(--text);
   }
 
   .about {
@@ -535,7 +569,8 @@ title: Home
     </div>
   </section>
 
-  {% assign featured = site.posts | first %}
+  {% assign primary_posts = site.posts | where: "primary", true %}
+  {% assign featured = primary_posts | first %}
 
   {% if featured %}
   <section class="section" id="writing">
@@ -559,6 +594,20 @@ title: Home
               · {{ featured.categories | join: ", " }}
             {% endif %}
           </div>
+
+          {% assign featured_translations = site.posts | where: "translation_key", featured.translation_key %}
+          {% assign featured_zh = featured_translations | where: "lang", "zh" | first %}
+          {% assign featured_en = featured_translations | where: "lang", "en" | first %}
+          {% if featured_translations.size > 1 %}
+            <div class="language-links" aria-label="Language versions">
+              {% if featured_zh %}
+                <a class="language-pill is-primary" href="{{ featured_zh.url | relative_url }}">中文</a>
+              {% endif %}
+              {% if featured_en %}
+                <a class="language-pill" href="{{ featured_en.url | relative_url }}">English</a>
+              {% endif %}
+            </div>
+          {% endif %}
 
           <h3>
             <a href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
@@ -586,16 +635,31 @@ title: Home
     </div>
 
     <div class="posts">
-      {% for post in site.posts offset: 1 limit: 8 %}
-        <a class="post-row" href="{{ post.url | relative_url }}">
+      {% for post in primary_posts offset: 1 limit: 8 %}
+        <article class="post-row">
           <div class="post-date">{{ post.date | date: "%b %d, %Y" }}</div>
-          <div class="post-title">{{ post.title }}</div>
+          <div class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </div>
           <div class="post-category">
             {% if post.categories %}
-              {{ post.categories | join: " / " }}
+              <div>{{ post.categories | join: " / " }}</div>
+            {% endif %}
+            {% assign translations = site.posts | where: "translation_key", post.translation_key %}
+            {% assign zh_translation = translations | where: "lang", "zh" | first %}
+            {% assign en_translation = translations | where: "lang", "en" | first %}
+            {% if translations.size > 1 %}
+              <div class="language-links" aria-label="Language versions">
+                {% if zh_translation %}
+                  <a class="language-pill is-primary" href="{{ zh_translation.url | relative_url }}">中文</a>
+                {% endif %}
+                {% if en_translation %}
+                  <a class="language-pill" href="{{ en_translation.url | relative_url }}">English</a>
+                {% endif %}
+              </div>
             {% endif %}
           </div>
-        </a>
+        </article>
       {% endfor %}
     </div>
   </section>

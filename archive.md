@@ -92,6 +92,30 @@ permalink: /archive/
     font-size: 13px;
   }
 
+  .language-links {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .language-pill {
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 999px;
+    color: #a8b0bd;
+    font-size: 12px;
+    line-height: 1;
+    padding: 7px 10px;
+    text-decoration: none;
+  }
+
+  .language-pill:hover,
+  .language-pill.is-primary {
+    border-color: rgba(216,181,109,0.45);
+    background: rgba(216,181,109,0.12);
+    color: #f3efe7;
+  }
+
   @media (max-width: 680px) {
     .archive-page {
       padding: 36px 18px 72px;
@@ -120,7 +144,8 @@ permalink: /archive/
     All essays, notes, and experiments collected in one place.
   </p>
 
-  {% for post in site.posts %}
+  {% assign primary_posts = site.posts | where: "primary", true %}
+  {% for post in primary_posts %}
     <div class="post-row">
       <div class="date">{{ post.date | date: "%b %d, %Y" }}</div>
       <div>
@@ -129,6 +154,19 @@ permalink: /archive/
         </div>
         {% if post.categories %}
           <div class="cats">{{ post.categories | join: " / " }}</div>
+        {% endif %}
+        {% assign translations = site.posts | where: "translation_key", post.translation_key %}
+        {% assign zh_translation = translations | where: "lang", "zh" | first %}
+        {% assign en_translation = translations | where: "lang", "en" | first %}
+        {% if translations.size > 1 %}
+          <div class="language-links" aria-label="Language versions">
+            {% if zh_translation %}
+              <a class="language-pill is-primary" href="{{ zh_translation.url | relative_url }}">中文</a>
+            {% endif %}
+            {% if en_translation %}
+              <a class="language-pill" href="{{ en_translation.url | relative_url }}">English</a>
+            {% endif %}
+          </div>
         {% endif %}
       </div>
     </div>
