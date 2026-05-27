@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Let Agents Remember Like Humans, Not Hard Drives: A Generational Memory Model"
+title: "Let Agents Remember Like Humans: A Generational Memory Model"
 date: 2026-05-27 19:00:00 +1000
 categories: ai-agent memory architecture
 lang: en
